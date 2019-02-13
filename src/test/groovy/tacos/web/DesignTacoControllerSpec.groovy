@@ -7,6 +7,7 @@ import spock.lang.Specification
 
 import static org.hamcrest.Matchers.containsString
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 @WebMvcTest(DesignTacoController.class)
@@ -31,5 +32,12 @@ class DesignTacoControllerSpec extends Specification {
                 .andExpect(content().string(containsString("Lettuce")))
                 .andExpect(content().string(containsString("Name your taco creation:")))
                 .andExpect(content().string(containsString("Submit your taco")))
+    }
+
+    def "should process post request an redirect to orderForm"() {
+        expect:
+        mockMvc.perform(post("/design"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/orders/current"))
     }
 }
