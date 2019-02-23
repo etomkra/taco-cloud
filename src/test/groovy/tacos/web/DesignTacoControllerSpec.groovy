@@ -3,7 +3,9 @@ package tacos.web
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
-import spock.lang.Specification
+import tacos.Ingredient
+import tacos.WebMvcTestSpecification
+import tacos.data.IngredientRepository
 
 import static org.hamcrest.Matchers.containsString
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -11,11 +13,28 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 @WebMvcTest(DesignTacoController.class)
-class DesignTacoControllerSpec extends Specification {
+class DesignTacoControllerSpec extends WebMvcTestSpecification {
+
     @Autowired
     private MockMvc mockMvc
 
+    @Autowired
+    IngredientRepository ingredientRepository
+
     def "should render design page"() {
+        given:
+        ingredientRepository.findAll() >> [
+                new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
+                new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
+                new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
+                new Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN),
+                new Ingredient("TMTO", "Diced Tomatoes", Ingredient.Type.VEGGIES),
+                new Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES),
+                new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
+                new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE),
+                new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE),
+                new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
+        ]
         expect:
         mockMvc.perform(get("/design"))
                 .andExpect(status().isOk())
@@ -41,3 +60,4 @@ class DesignTacoControllerSpec extends Specification {
                 .andExpect(redirectedUrl("/orders/current"))
     }
 }
+
