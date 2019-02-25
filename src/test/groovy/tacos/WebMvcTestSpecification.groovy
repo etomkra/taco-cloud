@@ -15,7 +15,7 @@ class WebMvcTestSpecification extends Specification {
 
         @Bean
         IngredientRepository ingredientRepository() {
-            def mockedRepo = detachedMockFactory.Mock(IngredientRepository)
+            detachedMockFactory.Mock(IngredientRepository)
         }
 
     }
