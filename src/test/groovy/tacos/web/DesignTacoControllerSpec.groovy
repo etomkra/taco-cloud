@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
 import tacos.Ingredient
-import tacos.WebMvcTestSpecification
+import tacos.IngredientConverter
+import tacos.MockedSpecification
 import tacos.data.IngredientRepository
 
 import static org.hamcrest.Matchers.containsString
@@ -13,13 +14,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 @WebMvcTest(DesignTacoController.class)
-class DesignTacoControllerSpec extends WebMvcTestSpecification {
+class DesignTacoControllerSpec extends MockedSpecification {
 
     @Autowired
     private MockMvc mockMvc
 
     @Autowired
     IngredientRepository ingredientRepository
+
+    @Autowired
+    IngredientConverter ingredientConverter
 
     def "should render design page"() {
         given:
@@ -54,8 +58,18 @@ class DesignTacoControllerSpec extends WebMvcTestSpecification {
     }
 
     def "should process post request an redirect to orderForm"() {
+        given:
+        def ingredients = [
+                new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
+                new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP)
+        ]
+
         expect:
-        mockMvc.perform(post("/design"))
+        mockMvc.perform(
+                post("/design")
+                        .param("name", "TestTaco")
+                        .sessionAttr("ingredients", ingredients)
+        )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/orders/current"))
     }
