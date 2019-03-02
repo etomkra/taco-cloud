@@ -1,10 +1,11 @@
-package tacos.data
+package tacos.data.jdbcTemplate
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 import tacos.Ingredient
+import tacos.data.jdbcTemplate.IngredientRepository
 
 @SpringBootTest
 @AutoConfigureTestDatabase

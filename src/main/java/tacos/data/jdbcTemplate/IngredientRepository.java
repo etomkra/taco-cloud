@@ -1,4 +1,4 @@
-package tacos.data;
+package tacos.data.jdbcTemplate;
 
 import tacos.Ingredient;
 

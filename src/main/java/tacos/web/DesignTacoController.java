@@ -10,8 +10,8 @@ import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.Order;
 import tacos.Taco;
-import tacos.data.IngredientRepository;
-import tacos.data.TacoRepository;
+import tacos.data.jdbcTemplate.IngredientRepository;
+import tacos.data.jdbcTemplate.TacoRepository;
 
 import javax.validation.Valid;
 import java.util.ArrayList;

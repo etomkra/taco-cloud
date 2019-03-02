@@ -4,9 +4,9 @@ import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.context.annotation.Bean
 import spock.lang.Specification
 import spock.mock.DetachedMockFactory
-import tacos.data.IngredientRepository
-import tacos.data.OrderRepository
-import tacos.data.TacoRepository
+import tacos.data.jdbcTemplate.IngredientRepository
+import tacos.data.jdbcTemplate.OrderRepository
+import tacos.data.jdbcTemplate.TacoRepository
 
 
 class MockedSpecification extends Specification {

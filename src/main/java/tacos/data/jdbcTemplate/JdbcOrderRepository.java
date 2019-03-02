@@ -1,4 +1,4 @@
-package tacos.data;
+package tacos.data.jdbcTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

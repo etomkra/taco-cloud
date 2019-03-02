@@ -1,4 +1,4 @@
-package tacos.data
+package tacos.data.jdbcTemplate
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -8,6 +8,8 @@ import spock.lang.Specification
 import tacos.Ingredient
 import tacos.Order
 import tacos.Taco
+import tacos.data.jdbcTemplate.OrderRepository
+import tacos.data.jdbcTemplate.TacoRepository
 
 @SpringBootTest
 class JdbcOrderRepositoryTest extends Specification {

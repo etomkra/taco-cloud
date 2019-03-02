@@ -3,7 +3,7 @@ package tacos
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Unroll
-import tacos.data.IngredientRepository
+import tacos.data.jdbcTemplate.IngredientRepository
 
 @SpringBootTest
 class IngredientConverterTest extends MockedSpecification {
