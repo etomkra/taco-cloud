@@ -1,44 +1,51 @@
-create table if not exists Ingredient (
-id varchar(4) not null,
-name varchar(25) not null,
-type varchar(10) not null
+CREATE SEQUENCE PUBLIC.HIBERNATE_SEQUENCE START WITH 1;
+CREATE TABLE PUBLIC.INGREDIENT
+(
+  ID   VARCHAR(255) NOT NULL,
+  NAME VARCHAR(255),
+  TYPE INTEGER
 );
+ALTER TABLE PUBLIC.INGREDIENT
+  ADD CONSTRAINT PUBLIC.CONSTRAINT_1 PRIMARY KEY (ID);
 
-create table if not exists Taco (
-id identity,
-name varchar(50) not null,
-createdAt timestamp not null
+CREATE TABLE PUBLIC.TACO
+(
+  ID         BIGINT       NOT NULL,
+  CREATED_AT TIMESTAMP,
+  NAME       VARCHAR(255) NOT NULL
 );
-
-create table if not exists Taco_Ingredients (
-taco bigint not null,
-ingredient varchar(4) not null
+ALTER TABLE PUBLIC.TACO
+  ADD CONSTRAINT PUBLIC.CONSTRAINT_2 PRIMARY KEY (ID);
+CREATE
+MEMORY TABLE PUBLIC.TACO_INGREDIENTS(
+    TACO_ID BIGINT NOT NULL,
+    INGREDIENTS_ID VARCHAR(255) NOT NULL
 );
-
-alter table Taco_Ingredients
-  add foreign key (taco) references Taco (id);
-alter table Taco_Ingredients
-  add foreign key (ingredient) references Ingredient (id);
-
-create table if not exists Taco_Order (
-id identity,
-deliveryName varchar(50) not null,
-deliveryStreet varchar(50) not null,
-deliveryCity varchar(50) not null,
-deliveryState varchar(2) not null,
-deliveryZip varchar(10) not null,
-ccNumber varchar(16) not null,
-ccExpiration varchar(5) not null,
-ccCVV varchar(3) not null,
-placedAt timestamp not null
+CREATE TABLE PUBLIC.TACO_ORDER
+(
+  ID            BIGINT NOT NULL,
+  CCCVV         VARCHAR(255),
+  CC_EXPIRATION VARCHAR(255),
+  CC_NUMBER     VARCHAR(255),
+  CITY          VARCHAR(255),
+  NAME          VARCHAR(255),
+  PLACED_AT     TIMESTAMP,
+  STATE         VARCHAR(2),
+  STREET        VARCHAR(255),
+  ZIP           VARCHAR(255)
 );
-
-create table if not exists Taco_Order_Tacos (
-tacoOrder bigint not null,
-taco bigint not null
+ALTER TABLE PUBLIC.TACO_ORDER
+  ADD CONSTRAINT PUBLIC.CONSTRAINT_F PRIMARY KEY (ID);
+CREATE TABLE PUBLIC.TACO_ORDER_TACOS
+(
+  ORDER_ID BIGINT NOT NULL,
+  TACOS_ID BIGINT NOT NULL
 );
-
-alter table Taco_Order_Tacos
-  add foreign key (tacoOrder) references Taco_Order (id);
-alter table Taco_Order_Tacos
-  add foreign key (taco) references Taco (id);
+ALTER TABLE PUBLIC.TACO_ORDER_TACOS
+  ADD CONSTRAINT PUBLIC.FKFWVQTNJFVIEW9E5F7BFQTD1NS FOREIGN KEY (TACOS_ID) REFERENCES PUBLIC.TACO (ID) NOCHECK;
+ALTER TABLE PUBLIC.TACO_INGREDIENTS
+  ADD CONSTRAINT PUBLIC.FK27RYCUH3MJAEPNBA0J6M8XL4Q FOREIGN KEY (TACO_ID) REFERENCES PUBLIC.TACO (ID) NOCHECK;
+ALTER TABLE PUBLIC.TACO_INGREDIENTS
+  ADD CONSTRAINT PUBLIC.FK7Y679Y77N5E75S3SS1V7FF14J FOREIGN KEY (INGREDIENTS_ID) REFERENCES PUBLIC.INGREDIENT (ID) NOCHECK;
+ALTER TABLE PUBLIC.TACO_ORDER_TACOS
+  ADD CONSTRAINT PUBLIC.FKCXWVDKNDAQMRXCEN10VKNEEXO FOREIGN KEY (ORDER_ID) REFERENCES PUBLIC.TACO_ORDER (ID) NOCHECK;

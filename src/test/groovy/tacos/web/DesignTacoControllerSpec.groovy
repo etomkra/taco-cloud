@@ -6,7 +6,7 @@ import org.springframework.test.web.servlet.MockMvc
 import tacos.Ingredient
 import tacos.IngredientConverter
 import tacos.MockedSpecification
-import tacos.data.jdbcTemplate.IngredientRepository
+import tacos.data.IngredientRepository
 
 import static org.hamcrest.Matchers.containsString
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get

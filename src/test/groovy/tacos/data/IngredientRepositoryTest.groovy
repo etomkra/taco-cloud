@@ -38,6 +38,8 @@ class IngredientRepositoryTest extends Specification {
 
     def "should find all saved ingredients"() {
         given:
+        ingredientRepository.deleteAll()
+
         1.upto(5) {
             def ingredientName = "INGREDIENT_${it}"
             ingredientRepository.save(new Ingredient(ingredientName, "NEW INGREDIENT # ${it}", Ingredient.Type.WRAP))
