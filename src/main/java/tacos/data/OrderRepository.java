@@ -1,5 +1,6 @@
 package tacos.data;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import tacos.Order;
 
@@ -34,5 +35,12 @@ public interface OrderRepository
         IgnoringCase, IgnoresCase, AllIgnoringCase, AllIgnoresCase
      */
     List<Order> findByCity(String city);
+
+    /*
+    Custom query example using JPQL syntax (case-sensitive ! according to the entities)
+    Method name is irrelevant
+     */
+    @Query("SELECT o FROM Order o WHERE city='Krakow'")
+    List<Order> findAllFromKrakow();
 
 }
