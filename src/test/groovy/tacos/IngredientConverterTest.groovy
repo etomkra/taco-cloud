@@ -1,15 +1,22 @@
 package tacos
 
-import spock.lang.Specification
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import spock.lang.Unroll
-import tacos.data.jdbcTemplate.JdbcIngredientRepository
+import tacos.data.IngredientRepository
 
-class IngredientConverterTest extends Specification {
+@WebMvcTest(IngredientConverter.class)
+class IngredientConverterTest extends MockedSpecification {
+
+    @Autowired
+    IngredientRepository ingredientRepository
+
+    @Autowired
+    IngredientConverter converter
 
     @Unroll
     def "should #testDesc"() {
         given:
-        def ingredientRepository = Mock(JdbcIngredientRepository)
         ingredientRepository.findAll() >> [new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP)]
 
         def converter = new IngredientConverter(ingredientRepository)

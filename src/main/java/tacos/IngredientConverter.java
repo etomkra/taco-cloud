@@ -3,17 +3,17 @@ package tacos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import tacos.data.jdbcTemplate.JdbcIngredientRepository;
+import tacos.data.IngredientRepository;
 
 import java.util.stream.StreamSupport;
 
 @Component
 public class IngredientConverter implements Converter<String, Ingredient> {
 
-    private final JdbcIngredientRepository ingredientRepo;
+    private final IngredientRepository ingredientRepo;
 
     @Autowired
-    public IngredientConverter(JdbcIngredientRepository ingredientRepo) {
+    public IngredientConverter(IngredientRepository ingredientRepo) {
         this.ingredientRepo = ingredientRepo;
     }
 
