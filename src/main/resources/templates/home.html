@@ -8,5 +8,9 @@
 <h1>Welcome to...</h1>
 <h2>Taco Cloud by etomkra!</h2>
 <img height="142" width="142" th:src="@{/images/TacoCloud.png}"/>
+<a href="/design">Design and order new Taco!</a>
+<form method="POST" th:action="@{/logout}">
+  <input type="submit" value="Logout"/>
+</form>
 </body>
 </html>

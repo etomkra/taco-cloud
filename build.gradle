@@ -20,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 
 
 group = 'sia'
-version = '0.0.3'
+version = '0.0.4'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -32,6 +32,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    
 
     runtimeOnly 'org.projectlombok:lombok:1.18.4'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
@@ -39,6 +41,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     testImplementation "org.spockframework:spock-core:1.1-groovy-2.4"
+    testImplementation "org.springframework.security:spring-security-test"
     testImplementation "org.spockframework:spock-spring:1.1-groovy-2.4"
 }
 

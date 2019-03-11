@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
-@WebMvcTest(OrderController.class)
+@WebMvcTest(value = OrderController.class, secure = false)
 class OrderControllerSpec extends MockedSpecification {
 
     @Autowired
