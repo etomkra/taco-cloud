@@ -1,8 +1,10 @@
 package tacos.data;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import tacos.Order;
+import tacos.User;
 
 import java.util.List;
 
@@ -43,4 +45,5 @@ public interface OrderRepository
     @Query("SELECT o FROM Order o WHERE city='Krakow'")
     List<Order> findAllFromKrakow();
 
+    List<Order> findByUserOrderByPlacedAtDesc(User user, Pageable pageable);
 }

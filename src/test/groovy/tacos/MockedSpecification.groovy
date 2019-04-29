@@ -2,6 +2,7 @@ package tacos
 
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Import
 import org.springframework.security.crypto.password.PasswordEncoder
 import spock.lang.Specification
 import spock.mock.DetachedMockFactory
@@ -9,8 +10,9 @@ import tacos.data.IngredientRepository
 import tacos.data.OrderRepository
 import tacos.data.TacoRepository
 import tacos.data.UserRepository
+import tacos.web.OrderProps
 
-
+@Import(OrderProps.class)
 class MockedSpecification extends Specification {
 
     @TestConfiguration
