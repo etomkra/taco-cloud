@@ -31,6 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserRepositoryUserDetailsService();
+    }
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new Pbkdf2PasswordEncoder("5ecr@t");
     }

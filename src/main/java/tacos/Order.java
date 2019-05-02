@@ -24,6 +24,9 @@ import java.util.List;
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public Order() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

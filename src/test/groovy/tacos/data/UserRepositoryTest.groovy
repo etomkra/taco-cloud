@@ -2,10 +2,13 @@ package tacos.data
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.context.annotation.Import
 import spock.lang.Specification
 import tacos.User
+import tacos.security.SecurityConfig
 
 @DataJpaTest
+@Import(SecurityConfig)
 class UserRepositoryTest extends Specification {
 
     @Autowired
@@ -14,9 +17,6 @@ class UserRepositoryTest extends Specification {
     def "should save and and find new user"() {
         given:
         def newUser = new User("testUser", "pass123", "Name Surname", "Dolna 11", "Warsaw", "MZ", "02-345", "221234567")
-
-        expect:
-        userRepository.findAll().size() == 0
 
         when:
         userRepository.save(newUser)
